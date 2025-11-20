@@ -1,0 +1,210 @@
+.primary {
+    color: #282828
+}
+
+.secondary {
+    color: #cf322e;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #fff;
+    font-family: "Poppins", sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Fredoka", sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: normal;
+    color: #3d3d3d;
+}
+
+ul,ol {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style-position: inside;
+    list-style-type: disc;
+}
+
+button {
+    all:unset
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 1%
+}
+
+#topnav {
+    background-color: white;
+    display: flex;
+    text-decoration: none;
+    padding-bottom: 15px;
+    box-shadow: 0px 0px 15px rgba(40, 40, 40, 0.5);
+}
+
+#navmenu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+
+#topnav a {
+    color: #282828;
+    text-decoration: none;
+    text-align: center;
+    font-family: "Fredoka", sans-serif;
+    padding: 15px 15px;
+    font-size: 1.25em;
+    font-weight: 600;   
+}
+
+#topnav a:hover {
+    background-color: #cf322e;
+    color: white;
+}
+
+#topnav a.active {
+    background-color: #cf322e;
+    color: white;
+}
+
+#logo {
+    width: 200px;
+    height: 100px;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+#banner {
+    background: #CF322E;
+    background: linear-gradient(145deg,rgba(207, 50, 46, 1) 25%, rgba(217, 116, 85, 1) 100%),
+    url(https://images.unsplash.com/photo-1658542038445-3b17dbadcecd?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    width: 100%;
+    height: 500px;
+    background-blend-mode: soft-light, hard-light, overlay;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    box-shadow: 0px 7px 16px rgba(40, 40, 40, 0.85);
+}
+
+#bannertext {
+    height: 10%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-bottom:5%;
+}
+
+#bannertext h1{
+    color: #fefefe;
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: 3.25em;
+    text-align: right;
+    text-shadow: 3px 3px 3px rgba(40, 40, 40, 0.5);
+    opacity: 0;
+    animation: fadein 2s ease-in-out forwards;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#showcase {
+    display: flex;
+}
+
+.showcaseitem {
+    display: flex;
+    padding: 15px;
+    margin: 10px;
+    width:33%;
+    justify-content: space-around;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.showcaseitem img {
+    border-radius: 100%;
+    object-fit: cover;
+    align-self: center;
+    object-position: center;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border:  #CF322E solid 5px;
+    /*box-shadow: 3px 3px 8px rgba(40, 40, 40, 0.5);*/
+}
+
+.showcasetext h1 {
+   color: #282828;
+   text-align: center;
+   text-shadow: 1px 1px 1px rgba(40, 40, 40, 0.5);
+}
+#calltitle {
+    font-size: 2em;
+    text-align: center;
+    padding: 25px;
+}
+
+#calltitle h1 {
+    font-weight: 600;
+    font-family: "Fredoka", sans-serif;
+}
+
+
+#callbutton {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#adoptbtn {
+    text-decoration: none;
+    background-color: #CF322E;
+    color: white;
+    font-family: "Fredoka", sans-serif;
+    font-size: 3em;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 7px rgba(40, 40, 40, 0.5);
+}
+
+#adoptbtn:hover {
+    background-color: white;
+    color: #CF322E;
+    border: #CF322E solid 1px;
+    transition-duration: 350ms;
+}
+
+#adoptbtn:active {
+    background-color: #f78987;
+    transform: translateY(4px);
+    color: white;
+    box-shadow:0 2px rgba(40, 40, 40, 0.75);
+}
+
+footer {
+    border-top: rgba(40, 40, 40, 0.25) solid 1px;
+    text-align: center;
+}
