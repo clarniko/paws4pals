@@ -49,6 +49,11 @@ button {
     text-decoration: none;
     padding-bottom: 15px;
     box-shadow: 0px 0px 15px rgba(40, 40, 40, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
 }
 
 #navmenu {
@@ -88,6 +93,10 @@ button {
     height: auto;
 }
 
+#page {
+    margin-top: 115px;
+}
+
 #banner {
     background: #CF322E;
     background: linear-gradient(145deg,rgba(207, 50, 46, 1) 25%, rgba(217, 116, 85, 1) 100%),
@@ -99,6 +108,7 @@ button {
     background-size: cover;
     position: relative;
     box-shadow: 0px 7px 16px rgba(40, 40, 40, 0.85);
+
 }
 
 #bannertext {
