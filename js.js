@@ -1,8 +1,3 @@
-//import data from './data.json' assert { type: 'json' };
-//const jsonFile = require('./data.json');
-//const data = JSON.parse(jsonFile);
-//const pets = data.pets;
-
 let data = localStorage.getItem('petData');
 
 if (data) {
@@ -26,10 +21,24 @@ randomPet(s1,s1Name);
 randomPet(s2,s2Name);
 randomPet(s3,s3Name);
 
-
-
 var button = document.querySelector("#adoptbtn");
 button.addEventListener("click",clickMe);
+
+
+const showcaseParent = document.getElementById("showcaseall");
+data.array.forEach(pets => {
+    const image = document.createElement('img');
+    const name = document.createElement('h1');
+    name.textContent = name;
+});
+
+
+//
+  //      <div class="showcaseitem">
+   //         <img id="s1" class="responsive" src="imgs/placeholder_BG.png">
+    //        <div id="s1Name" class="showcasetext"><h1>name</h1></div>
+     //   </div>
+
 
 function clickMe() {
     const randomPetIndex = Math.floor(Math.random() * data.pets.length);
@@ -45,3 +54,4 @@ function randomPet(img,name) {
     img.src = randomPetImage;
     name.textContent = randomPetName;
 }
+

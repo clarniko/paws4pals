@@ -216,6 +216,53 @@ button {
     box-shadow:0 2px rgba(40, 40, 40, 0.75);
 }
 
+#loginwindow {
+    border: #282828 solid 2px;
+    border-radius: 5%;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    margin: 200px 0 200px 25%;
+    padding-top: 15px;
+}
+
+#loginfields {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10%;
+}
+
+#loginbtn {
+    text-decoration: none;
+    background-color: #CF322E;
+    color: white;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 7px rgba(40, 40, 40, 0.5);
+    width: 25%;
+    margin-top: 25px;
+    text-transform: uppercase;
+    
+}
+
+#loginbtn:hover {
+    background-color: white;
+    color: #CF322E;
+    border: #CF322E solid 1px;
+    transition-duration: 350ms;
+}
+
+#loginbtn:active {
+    background-color: #f78987;
+    transform: translateY(4px);
+    color: white;
+    box-shadow:0 2px rgba(40, 40, 40, 0.75);
+}
+
 footer {
     border-top: rgba(40, 40, 40, 0.25) solid 1px;
     text-align: center;
