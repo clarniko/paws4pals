@@ -151,6 +151,8 @@ button {
     width: 100%;
     aspect-ratio: 1/1;
     border:  #CF322E solid 5px;
+    max-width: 400px;
+    max-height: 400px;
     /*box-shadow: 3px 3px 8px rgba(40, 40, 40, 0.5);*/
 }
 
