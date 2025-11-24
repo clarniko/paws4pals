@@ -13,6 +13,18 @@ const initialData= {
       "name": "badger"
     }
   ],
+  "users":[
+    {
+      "username": "admin@paws4pals.com",
+      "password": "Password123",
+      "type": "admin"
+    },
+    {
+      "username": "guest@example.com",
+      "password": "Password123",
+      "type": "guest"
+    }
+  ],
   "pets": [
     {
       "id": 1,

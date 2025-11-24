@@ -33,7 +33,11 @@ ul,ol {
 }
 
 button {
-    all:unset
+    all:unset;
+}
+
+form {
+    all:unset;
 }
 
 .grid {
@@ -190,7 +194,7 @@ button {
     align-items: center;
 }
 
-#adoptbtn {
+#allPetsBtn {
     text-decoration: none;
     background-color: #CF322E;
     color: white;
@@ -202,14 +206,14 @@ button {
     box-shadow: 0 7px rgba(40, 40, 40, 0.5);
 }
 
-#adoptbtn:hover {
+#allPetsBtn:hover {
     background-color: white;
     color: #CF322E;
     border: #CF322E solid 1px;
     transition-duration: 350ms;
 }
 
-#adoptbtn:active {
+#allPetsBtn:active {
     background-color: #f78987;
     transform: translateY(4px);
     color: white;
@@ -328,7 +332,7 @@ button {
     box-shadow:0 2px rgba(40, 40, 40, 0.75);
 }
 
-#loginfields {
+#loginForm {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -364,7 +368,90 @@ button {
     box-shadow:0 2px rgba(40, 40, 40, 0.75);
 }
 
+#loginStatus {
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: bolder;
+}
+
+.error {
+    color: #CF322E;
+}
+
+.success {
+    color: #61cf2e;
+}
+
+
+.siteButtons {
+    text-decoration: none;
+    background-color: #CF322E;
+    color: white;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 7px rgba(40, 40, 40, 0.5);
+    width: 25%;
+    margin-top: 25px;
+    text-transform: uppercase;
+}
+
+.siteButtons:hover {
+    background-color: white;
+    color: #CF322E;
+    border: #CF322E solid 1px;
+    transition-duration: 350ms;
+}
+
+.siteButtons:active {
+    background-color: #f78987;
+    transform: translateY(4px);
+    color: white;
+    box-shadow:0 2px rgba(40, 40, 40, 0.75);
+}
+
+#adminTitle {
+    font-size: 3em;
+    text-align: center;
+}
+
+#adminBtns {
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
 footer {
     border-top: rgba(40, 40, 40, 0.25) solid 1px;
     text-align: center;
+}
+
+
+#filterBar {
+    /* background: green; */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.filterSection{
+    /* background-color: red; */
+    padding: 10px;
+}
+
+.filterSection label {
+    font-weight: 500;
+}
+
+.hide {
+    display: none;
 }

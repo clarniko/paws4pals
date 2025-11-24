@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="./data.js"></script>
-
-    
 </head>
 <body>
     <nav id="topnav">
@@ -26,43 +24,23 @@
                 <a href="login.html">Login</a>
             </div>
     </nav>
-
 <div id="page">
-    <div id="filterBar">
-        <div class="filterSection">
-            <label for="breedFilter">Breed:</label>
-            <select id="breedFilter">
-                <option value="">All Breeds</option>
-            </select>
+
+    <div id="loginwindow">
+        <div id="loginlogo">
+            <img src="imgs/logo.png" alt="" class="responsive">
         </div>
-        <div class="filterSection">
-            <label>Sex:</label>
-                <input type="checkbox" id="sexMale" value="Male">
-                <label for="sexMale">Male</label>
-                <input type="checkbox" id="sexFemale" value="Female">
-                <label for="sexFemale">Female</label>
-        </div>
-        <div class="filterSection">
-            <label>Colour:</label>
-            <select id="colourFilter">
-                <option value="">All Colours</option>
-                <option value="black">Black</option>
-                <option value="white">White</option>
-                <option value="grey">Grey</option>
-                <option value="brown">Brown</option>
-                <option value="orange">Orange</option>                
-            </select>
+        <h1 id="adminTitle">Administrator Portal</h1>
+        <div id="adminBtns">
+            <button id="newPet" class="siteButtons">Add New Pet</button>
+            <button id="seePets" class="siteButtons">See All Pets</button>
         </div>
     </div>
-    <div id="showcase">
-        <div class="showcaseItem"></div>
-    </div>
-</div>
+
 </div>
 </body>
 <footer>
     <script src="./js.js"></script>
     <p id="copyright">&copy; Paws<span class="secondary">4</span>Pals 2025</p>
-    <script>allPets();</script>
 </footer>
 </html>
