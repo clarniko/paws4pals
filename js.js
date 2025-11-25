@@ -266,7 +266,7 @@ if(filterBar) {
     });
 }
 
-window.addEventListener('load',)
+// window.addEventListener('load',)
 
 
 
