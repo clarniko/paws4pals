@@ -29,6 +29,7 @@ var loginStatus = document.getElementById("loginStatus");
 var loginPage = document.querySelector('a[href="login.html"]');
 var logoutbtn = document.getElementById("logoutbtn");
 const loginForm = document.getElementById("loginForm");
+var regbtn = document.getElementById("regbtn");
 
 // Event Listeners for Button Actons
 var newPet = document.getElementById('newPet');
@@ -82,9 +83,53 @@ loginForm.addEventListener('submit', function(event) {
         loginStatus.textContent="Login Failed"
         loginStatus.classList.add("error");
     }
-
 });
 }
+
+if (regbtn) {
+    regbtn.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const usernameVal = username.value;
+        const passwordVal = password.value;
+
+        const matchedUser = data.users.find(user => 
+        user.username === usernameVal
+        );
+
+        if(matchedUser) {
+            loginStatus.textContent = "Username Already Exists!";
+            loginStatus.classList.add("error");
+        } else if (!usernameVal || !passwordVal) {
+            loginStatus.textContent = "Please enter a username and password";
+            loginStatus.classList.add("error");
+        } else {
+            if (usernameVal.includes("@pets4pals.com")) {
+                const newUser = {
+                username: usernameVal,
+                password: passwordVal,
+                type: 'admin'
+            }}
+            const newUser = {
+                username: usernameVal,
+                password: passwordVal,
+                type: 'guest'
+            };
+            data.users.push(newUser);
+            localStorage.setItem('petData', JSON.stringify(data));
+
+            loginStatus.textContent = "Registration Successful - you can now login!";
+            loginStatus.classList.remove("error");
+            loginStatus.classList.add("success");
+
+            username.value = '';
+            password.value = '';
+            loginStatus.classList.remove("error");
+            loginStatus.classList.remove("success");
+        }
+    });
+}
+
 
 if(logoutbtn) {
     logoutbtn.addEventListener("click", function(event) {
@@ -226,3 +271,4 @@ window.addEventListener('load',)
 
 
 }
+
