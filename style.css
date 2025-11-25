@@ -389,6 +389,36 @@ form {
     box-shadow:0 2px rgba(40, 40, 40, 0.75);
 }
 
+.clearbtn {
+    text-decoration: none;
+    background-color: #CF322E;
+    color: white;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 5px rgba(40, 40, 40, 0.5);
+    width: 150px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.clearbtn:hover {
+    background-color: white;
+    color: #CF322E;
+    border: #CF322E solid 1px;
+    transition-duration: 350ms;
+}
+
+.clearbtn:active {
+    background-color: #f78987;
+    transform: translateY(4px);
+    color: white;
+    box-shadow:0 2px rgba(40, 40, 40, 0.75);
+}
+
+
 #adminTitle {
     font-size: 3em;
     text-align: center;

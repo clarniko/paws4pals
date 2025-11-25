@@ -40,6 +40,12 @@ if(seePets) {seePets.addEventListener("click",function() {document.location.href
 
 // Filter Variables
 var filterBar = document.getElementById('filterBar');
+var breedFilter = document.getElementById('breedFilter');
+var sexMale = document.getElementById('sexMale');
+var sexFemale = document.getElementById('sexFemale');
+var colourFilter = document.getElementById('colourFilter');
+var clearFilter = document.getElementById('clearFilter');
+
 
 // This selects random pets from the local storage for the index page
 function callRandomPets() {
@@ -96,6 +102,7 @@ if (regbtn) {
         const matchedUser = data.users.find(user => 
         user.username === usernameVal
         );
+        let newUser;
 
         if(matchedUser) {
             loginStatus.textContent = "Username Already Exists!";
@@ -105,15 +112,17 @@ if (regbtn) {
             loginStatus.classList.add("error");
         } else {
             if (usernameVal.includes("@pets4pals.com")) {
-                const newUser = {
-                username: usernameVal,
-                password: passwordVal,
-                type: 'admin'
-            }}
-            const newUser = {
-                username: usernameVal,
-                password: passwordVal,
-                type: 'guest'
+                newUser = {
+                    username: usernameVal,
+                    password: passwordVal,
+                    type: 'admin'
+                };
+        } else {
+                newUser = {
+                    username: usernameVal,
+                    password: passwordVal,
+                    type: 'guest'
+               };
             };
             data.users.push(newUser);
             localStorage.setItem('petData', JSON.stringify(data));
@@ -188,7 +197,10 @@ function allPets () {
 
     shuffle.forEach(pet => {
         const showcaseItem = document.createElement('div');
-        showcaseItem.className = 'showcaseItem' + ' ' + pet.breed;
+        showcaseItem.className = 'showcaseItem';
+        showcaseItem.setAttribute('data-breed', pet.breed);
+        showcaseItem.setAttribute('data-sex', pet.sex);
+        showcaseItem.setAttribute('data-colour', pet.colour.toLowerCase());
 
 
         const image = document.createElement('img');
@@ -246,29 +258,61 @@ if(filterBar) {
     
     // When the breed dropdown changes, add the hide class to showcase items that are not
     // the selected breed
-    breedFilter.addEventListener('change', function(){
-        const selectedValue = this.value;
-        const allItems = document.querySelectorAll('.showcaseItem');
-        
-
-        allItems.forEach(item => {
-            if (selectedValue === 'All Breeds') {
-                item.classList.remove('hide');
-            } else {
-                const classes = item.className.split(' ');
-                if (classes.includes(selectedValue)) {
-                    item.classList.remove('hide');
-                } else {
-                    item.classList.add('hide');
-                }
+function applyFilters() {
+    const selectedBreed = breedFilter.value;
+    const showMale = sexMale.checked;
+    const showFemale = sexFemale.checked;
+    const selectedColour = colourFilter.value;
+    const allItems = document.querySelectorAll('.showcaseItem');
+    
+    allItems.forEach(item => {
+        let showItem = true;
+        if (selectedBreed !== '' && selectedBreed !== 'All Breeds') {
+            const petBreed = item.getAttribute('data-breed');
+            if (petBreed !== selectedBreed) {
+                showItem = false;
             }
-        });
+        }
+        if (showMale || showFemale) {
+            const petSex = item.getAttribute('data-sex');        
+            if (!showMale && petSex === 'Male') {
+                showItem = false;
+            } else if (!showFemale && petSex === 'Female') {
+                showItem = false;
+            }
+        }
+        if (selectedColour !== '' && selectedColour !== 'All Colours') {
+            const petColour = item.getAttribute('data-colour');
+            if (!petColour.includes(selectedColour)) {
+                showItem = false;
+            }
+        }
+        if (showItem) {
+            item.classList.remove('hide');
+        } else {
+            item.classList.add('hide');
+        }
     });
 }
 
-// window.addEventListener('load',)
-
-
-
+function clearFilters() {
+    breedFilter.value = '';
+    colourFilter.value = '';
+    
+    sexMale.checked = false;
+    sexFemale.checked = false;
+    
+    const allItems = document.querySelectorAll('.showcaseItem');
+    allItems.forEach(item => {
+        item.classList.remove('hide');
+    });
 }
 
+breedFilter.addEventListener('change', applyFilters);
+sexMale.addEventListener('change', applyFilters);
+sexFemale.addEventListener('change', applyFilters);
+colourFilter.addEventListener('change',applyFilters);
+clearFilter.addEventListener('click',clearFilters);
+
+}
+}
