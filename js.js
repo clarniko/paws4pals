@@ -26,7 +26,8 @@ var username = document.getElementById("username");
 var password = document.getElementById("password");
 var loginbtn = document.getElementById("loginbtn");
 var loginStatus = document.getElementById("loginStatus");
-var loginPage = document.querySelector('a[href="login.html"]')
+var loginPage = document.querySelector('a[href="login.html"]');
+var logoutbtn = document.getElementById("logoutbtn");
 const loginForm = document.getElementById("loginForm");
 
 // Event Listeners for Button Actons
@@ -85,6 +86,13 @@ loginForm.addEventListener('submit', function(event) {
 });
 }
 
+if(logoutbtn) {
+    logoutbtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        logOut();
+})
+}
+
 // Runs the checkState logic when the user clicks the Login Nav link
 loginPage.addEventListener("click", function(event){
     event.preventDefault();
@@ -102,6 +110,7 @@ allPetsBtn.addEventListener("click", function(event){
 function logOut() {
     localStorage.setItem("loginState", "false");
     localStorage.setItem("loginType", "");
+    window.location.href = 'index.html';
 }
 
 // Function to select a random pet from the localStorage
@@ -211,6 +220,9 @@ if(filterBar) {
         });
     });
 }
+
+window.addEventListener('load',)
+
 
 
 }

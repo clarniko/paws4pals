@@ -339,33 +339,9 @@ form {
     padding: 10%;
 }
 
-#loginbtn {
-    text-decoration: none;
-    background-color: #CF322E;
-    color: white;
-    font-family: "Fredoka", sans-serif;
-    font-size: 1em;
-    font-weight: 600;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 7px rgba(40, 40, 40, 0.5);
-    width: 25%;
-    margin-top: 25px;
-    text-transform: uppercase;
-}
-
-#loginbtn:hover {
-    background-color: white;
-    color: #CF322E;
-    border: #CF322E solid 1px;
-    transition-duration: 350ms;
-}
-
-#loginbtn:active {
-    background-color: #f78987;
-    transform: translateY(4px);
-    color: white;
-    box-shadow:0 2px rgba(40, 40, 40, 0.75);
+#loginForm input {
+    font-size: 1.22em;
+    height: 2em;
 }
 
 #loginStatus {
@@ -396,6 +372,7 @@ form {
     width: 25%;
     margin-top: 25px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .siteButtons:hover {
@@ -417,7 +394,7 @@ form {
     text-align: center;
 }
 
-#adminBtns {
+.btnbox {
     margin: 50px;
     display: flex;
     align-items: center;
