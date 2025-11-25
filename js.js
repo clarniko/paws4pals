@@ -111,7 +111,7 @@ if (regbtn) {
             loginStatus.textContent = "Please enter a username and password";
             loginStatus.classList.add("error");
         } else {
-            if (usernameVal.includes("@pets4pals.com")) {
+            if (usernameVal.includes("@paws4pals.com")) {
                 newUser = {
                     username: usernameVal,
                     password: passwordVal,
