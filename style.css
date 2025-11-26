@@ -164,10 +164,10 @@ form {
     object-position: center;
     width: 100%;
     aspect-ratio: 1/1;
-    border:  #CF322E solid 5px;
+    /* border:  #CF322E solid 5px; */
     max-width: 400px;
     max-height: 400px;
-    /*box-shadow: 3px 3px 8px rgba(40, 40, 40, 0.5);*/
+    /* box-shadow: 3px 3px 8px rgba(40, 40, 40, 0.5); */
 }
 
 .herotext h1 {
@@ -316,7 +316,9 @@ form {
     margin: 20px auto 0;
     padding: 12px 30px;
     cursor: pointer;
+    width: 25%;
 }
+
 
 .applicationBtn:hover {
     background-color: white;
@@ -332,14 +334,42 @@ form {
     box-shadow:0 2px rgba(40, 40, 40, 0.75);
 }
 
-#loginForm {
+.applicationStatus {
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    font-family: "Fredoka", sans-serif;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 15px;
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 30px;
+    width: 25%;
+    text-align: center;
+}
+
+.hold {
+    background-color: orange;
+}
+
+.pending {
+    background-color: blue;
+}
+
+.adopted {
+    background-color: green;
+}
+
+.siteForm {
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 10%;
 }
 
-#loginForm input {
+.siteForm input, select {
     font-size: 1.22em;
     height: 2em;
 }
@@ -437,7 +467,6 @@ footer {
     text-align: center;
 }
 
-
 #filterBar {
     /* background: green; */
     padding: 20px;
@@ -461,4 +490,23 @@ footer {
 
 .hide {
     display: none;
+}
+
+#formMessage {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.formError {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #c62828
+}
+
+.formSuccess {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #2e7d32
 }

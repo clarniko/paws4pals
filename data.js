@@ -1,4 +1,18 @@
 const initialData= {
+  "statuses": [
+    {
+      "name": "available"
+    },
+    {
+      "name": "pending"
+    },
+    {
+      "name": "adopted"
+    },
+    {
+      "name": "on hold"
+    }
+  ],
   "breeds":[
     {
       "name": "cat"
@@ -37,7 +51,7 @@ const initialData= {
       "temperament": "Friendly and playful, loves attention from everyone",
       "comments": "Great with children, enjoys lounging in sunny spots",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Domestic_Cat_Face_Shot.jpg"
+      "imageUrl": "./imgs/Pets/Whiskers_01.jpeg"
     },
     {
       "id": 2,
@@ -50,7 +64,7 @@ const initialData= {
       "temperament": "Talkative and affectionate, but can be a bit demanding",
       "comments": "Very vocal, likes to follow her human around the house",
       "adoptionStatus": "pending",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Domestic_Cat_Face_Shot.jpg"
+      "imageUrl": "./imgs/Pets/Luna_01.jpeg"
     },
     {
       "id": 3,
@@ -63,7 +77,7 @@ const initialData= {
       "temperament": "Calm and gentle, prefers quiet environments",
       "comments": "Requires daily grooming, best suited for a peaceful home",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Domestic_Cat_Face_Shot.jpg"
+      "imageUrl": "./imgs/Pets/Mittens_01.jpeg"
     },
     {
       "id": 4,
@@ -76,7 +90,7 @@ const initialData= {
       "temperament": "Gentle giant, friendly but a little shy with strangers",
       "comments": "Large breed, very laid-back personality",
       "adoptionStatus": "adopted",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Domestic_Cat_Face_Shot.jpg"
+      "imageUrl": "./imgs/Pets/Simba_01.jpeg"
     },
     {
       "id": 5,
@@ -89,7 +103,7 @@ const initialData= {
       "temperament": "Energetic and curious, loves to explore and climb",
       "comments": "Very active, needs lots of stimulation and playtime",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Domestic_Cat_Face_Shot.jpg"
+      "imageUrl": "./imgs/Pets/Tiger_01.jpeg"
     },
     {
       "id": 6,
@@ -102,7 +116,7 @@ const initialData= {
       "temperament": "Friendly and loyal, great with kids and other pets",
       "comments": "Well-trained, loves swimming and fetch",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Retriever_Pup_2.jpg"
+      "imageUrl": "./imgs/Pets/Buddy_01.jpeg"
     },
     {
       "id": 7,
@@ -115,7 +129,7 @@ const initialData= {
       "temperament": "Intelligent and protective, needs an experienced owner",
       "comments": "Excellent guard dog, requires regular exercise",
       "adoptionStatus": "on hold",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Retriever_Pup_2.jpg"
+      "imageUrl": "./imgs/Pets/Max_01.jpeg"
     },
     {
       "id": 8,
@@ -128,7 +142,7 @@ const initialData= {
       "temperament": "Enthusiastic and loving, sometimes a bit too energetic",
       "comments": "Needs training on leash manners, loves everyone she meets",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Retriever_Pup_2.jpg"
+      "imageUrl": "./imgs/Pets/Daisy_01.jpeg"
     },
     {
       "id": 9,
@@ -141,7 +155,7 @@ const initialData= {
       "temperament": "Curious and friendly, follows his nose everywhere",
       "comments": "May wander if not on leash, good with other dogs",
       "adoptionStatus": "adopted",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Retriever_Pup_2.jpg"
+      "imageUrl": "./imgs/Pets/Charlie_01.jpeg"
     },
     {
       "id": 10,
@@ -154,7 +168,7 @@ const initialData= {
       "temperament": "Smart and elegant, a bit reserved with new people",
       "comments": "Hypoallergenic coat, requires regular grooming",
       "adoptionStatus": "pending",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Golden_Retriever_Pup_2.jpg"
+      "imageUrl": "./imgs/Pets/Bella_01.jpeg"
     },
     {
       "id": 11,
@@ -167,7 +181,7 @@ const initialData= {
       "temperament": "Chatty and social, loves to mimic sounds",
       "comments": "Can learn simple words, enjoys being around people",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Carduelis_tristis_CT2.jpg"
+      "imageUrl": "./imgs/Pets/Tweety_01.jpeg"
     },
     {
       "id": 12,
@@ -180,7 +194,7 @@ const initialData= {
       "temperament": "Gentle and affectionate, loves head scratches",
       "comments": "Whistles beautifully, good for first-time bird owners",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Carduelis_tristis_CT2.jpg"
+      "imageUrl": "./imgs/Pets/Sunny_01.jpeg"
     },
     {
       "id": 13,
@@ -193,7 +207,7 @@ const initialData= {
       "temperament": "Shy but musical, prefers to observe rather than interact",
       "comments": "Beautiful singer, best for someone who enjoys bird songs",
       "adoptionStatus": "adopted",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Carduelis_tristis_CT2.jpg"
+      "imageUrl": "./imgs/Pets/Pip_01.jpeg"
     },
     {
       "id": 14,
@@ -206,7 +220,7 @@ const initialData= {
       "temperament": "Playful and curious, can be a bit nippy when excited",
       "comments": "Very bonded to humans, needs daily interaction",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Carduelis_tristis_CT2.jpg"
+      "imageUrl": "./imgs/Pets/Peaches_01.jpeg"
     },
     {
       "id": 15,
@@ -219,7 +233,7 @@ const initialData= {
       "temperament": "Active and social, does best with other finches",
       "comments": "Low maintenance, beautiful to watch in flight",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Carduelis_tristis_CT2.jpg"
+      "imageUrl": "./imgs/Pets/Chirpy_01.jpeg"
     },
     {
       "id": 16,
@@ -232,7 +246,7 @@ const initialData= {
       "temperament": "Nocturnal and independent, can be grumpy if disturbed",
       "comments": "Requires specialized care and large outdoor enclosure",
       "adoptionStatus": "on hold",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/European_Badger_-_Meles_meles_%2851222439192%29.jpg"
+      "imageUrl": "./imgs/Pets/Barnaby_01.jpeg"
     },
     {
       "id": 17,
@@ -245,7 +259,7 @@ const initialData= {
       "temperament": "Solitary but curious, prefers minimal handling",
       "comments": "Experienced exotic pet owner required",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/European_Badger_-_Meles_meles_%2851222439192%29.jpg"
+      "imageUrl": "./imgs/Pets/Patches_01.jpeg"
     },
     {
       "id": 18,
@@ -258,7 +272,7 @@ const initialData= {
       "temperament": "Fearless and energetic, not for the faint of heart",
       "comments": "Extremely high maintenance, needs expert care",
       "adoptionStatus": "adopted",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/European_Badger_-_Meles_meles_%2851222439192%29.jpg"
+      "imageUrl": "./imgs/Pets/Rascal_01.jpeg"
     },
     {
       "id": 19,
@@ -271,7 +285,7 @@ const initialData= {
       "temperament": "Shy and nervous, but a great cuddler once trust is built",
       "comments": "Takes time to warm up, needs patient owner",
       "adoptionStatus": "available",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/European_Badger_-_Meles_meles_%2851222439192%29.jpg"
+      "imageUrl": "./imgs/Pets/Digger_01.jpeg"
     },
     {
       "id": 20,
@@ -284,7 +298,7 @@ const initialData= {
       "temperament": "Playful and mischievous, loves to dig and burrow",
       "comments": "Smallest badger species, still requires specialized care",
       "adoptionStatus": "pending",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/European_Badger_-_Meles_meles_%2851222439192%29.jpg"
+      "imageUrl": "./imgs/Pets/Stripey_01.jpeg"
     }
   ]
 }

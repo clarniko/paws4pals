@@ -46,6 +46,8 @@ var sexFemale = document.getElementById('sexFemale');
 var colourFilter = document.getElementById('colourFilter');
 var clearFilter = document.getElementById('clearFilter');
 
+var addPetForm = document.getElementById('addPetForm');
+var newPetBreed = document.getElementById('newPetBreed');
 
 // This selects random pets from the local storage for the index page
 function callRandomPets() {
@@ -79,7 +81,7 @@ loginForm.addEventListener('submit', function(event) {
             loginStatus.textContent="Login Success";
             loginStatus.classList.add("success");
         } else if (matchedUser.type === 'guest') {
-            window.location.href = 'allpets.html';
+            window.location.href = 'guest.html';
             localStorage.setItem("loginState", "true");
             localStorage.setItem("loginType", "guest");
             loginStatus.textContent="Login Success";
@@ -147,7 +149,7 @@ if(logoutbtn) {
 })
 }
 
-// Runs the checkState logic when the user clicks the Login Nav link
+// Runs the checkState logic when the user clicks the My Account Nav link
 loginPage.addEventListener("click", function(event){
     event.preventDefault();
     checkState();
@@ -156,7 +158,11 @@ loginPage.addEventListener("click", function(event){
 if (allPetsBtn) {
 allPetsBtn.addEventListener("click", function(event){
     event.preventDefault();
-    checkState();
+    if (state !== "true") {
+        window.location.href = 'login.html';
+    } else {
+        window.location.href = 'allpets.html';
+    }
 })
 }
 
@@ -182,7 +188,7 @@ function checkState() {
     if (state === "true" && type === "admin") {
         window.location.href = 'admin.html';
     } else if (state === "true" && type === "guest") {
-        window.location.href = 'allpets.html';
+        window.location.href = 'guest.html';
     } else {
         window.location.href = 'login.html';
     }
@@ -201,6 +207,7 @@ function allPets () {
         showcaseItem.setAttribute('data-breed', pet.breed);
         showcaseItem.setAttribute('data-sex', pet.sex);
         showcaseItem.setAttribute('data-colour', pet.colour.toLowerCase());
+        showcaseItem.setAttribute('data-status', pet.adoptionStatus);
 
 
         const image = document.createElement('img');
@@ -224,8 +231,24 @@ function allPets () {
             "<p><strong>Comments:</strong> " + pet.comments + "</p>";
 
         const applicationBtn = document.createElement('button');
+        applicationBtn.textContent = "Adopt Now!";
         applicationBtn.className = 'applicationBtn';
-        applicationBtn.textContent = 'Adopt Now';
+        const applicationStatus = document.createElement('div');
+        applicationStatus.className = 'applicationStatus';
+        applicationStatus.textContent = pet.adoptionStatus.charAt(0).toUpperCase() + pet.adoptionStatus.slice(1);
+
+        //available, on hold, pending, adopted
+        if (pet.adoptionStatus !== "available") {
+            if (pet.adoptionStatus === "on hold") {
+                applicationStatus.classList.add('hold')
+            } else if (pet.adoptionStatus === "adopted") {
+                applicationStatus.classList.add('adopted')
+            } else if (pet.adoptionStatus === "pending") {
+                applicationStatus.classList.add('pending')
+        }
+
+    }
+
         /* applicationBtn.onclick = function() {
             window.location.href = 'application.html?petId=' + pet.id + '&petName=' + pet.name;
         }; */
@@ -239,7 +262,8 @@ function allPets () {
         showcase.appendChild(showcaseItem);   
         showcaseInfo.appendChild(petDetails);
         showcaseItem.appendChild(showcaseInfo);
-        showcaseInfo.appendChild(applicationBtn);
+        if(pet.adoptionStatus === "available") {showcaseInfo.appendChild(applicationBtn);}
+        if(pet.adoptionStatus !== "available") {showcaseInfo.appendChild(applicationStatus);}
         showcaseTitle.appendChild(nameHeading);
         showcaseItem.appendChild(image);
         showcaseItem.appendChild(showcaseTitle);
@@ -255,6 +279,13 @@ if(filterBar) {
         option.textContent = breed.name.charAt(0).toUpperCase() + breed.name.slice(1);
         breedFilter.appendChild(option);
     });
+    // Populate the Status dropdown with the list of statuses.
+    data.statuses.forEach(status => {
+        const option = document.createElement('option');
+        option.value = status.name;
+        option.textContent = status.name.charAt(0).toUpperCase() + status.name.slice(1);
+        statusFilter.appendChild(option);
+    });
     
     // When the breed dropdown changes, add the hide class to showcase items that are not
     // the selected breed
@@ -263,21 +294,21 @@ function applyFilters() {
     const showMale = sexMale.checked;
     const showFemale = sexFemale.checked;
     const selectedColour = colourFilter.value;
+    const selectedStatus = statusFilter.value;
     const allItems = document.querySelectorAll('.showcaseItem');
     
     allItems.forEach(item => {
         let showItem = true;
+        
         if (selectedBreed !== '' && selectedBreed !== 'All Breeds') {
             const petBreed = item.getAttribute('data-breed');
             if (petBreed !== selectedBreed) {
                 showItem = false;
             }
-        }
+        }   
         if (showMale || showFemale) {
-            const petSex = item.getAttribute('data-sex');        
-            if (!showMale && petSex === 'Male') {
-                showItem = false;
-            } else if (!showFemale && petSex === 'Female') {
+            const petSex = item.getAttribute('data-sex');
+            if ((showMale && petSex !== 'Male') || (showFemale && petSex !== 'Female')) {
                 showItem = false;
             }
         }
@@ -287,6 +318,12 @@ function applyFilters() {
                 showItem = false;
             }
         }
+        if (selectedStatus !== '' && selectedStatus !== 'All Statuses') {
+            const petStatus = item.getAttribute('data-status');
+            if (!petStatus.includes(selectedStatus)) {
+                showItem = false;
+            }
+        }        
         if (showItem) {
             item.classList.remove('hide');
         } else {
@@ -312,7 +349,104 @@ breedFilter.addEventListener('change', applyFilters);
 sexMale.addEventListener('change', applyFilters);
 sexFemale.addEventListener('change', applyFilters);
 colourFilter.addEventListener('change',applyFilters);
+statusFilter.addEventListener('change',applyFilters);
 clearFilter.addEventListener('click',clearFilters);
+
+sexMale.addEventListener('change', function() {
+    if (this.checked) {
+        sexFemale.checked = false;
+    }
+    applyFilters();
+});
+
+sexFemale.addEventListener('change', function() {
+    if (this.checked) {
+        sexMale.checked = false;
+    }
+    applyFilters();
+});
 
 }
 }
+
+if(addPetForm) {
+    data.breeds.forEach(breed => {
+        const option = document.createElement('option');
+        option.value = breed.name;
+        option.textContent = breed.name.charAt(0).toUpperCase() + breed.name.slice(1);
+        newPetBreed.appendChild(option);
+    });
+
+    const formMessage = document.getElementById('formMessage');
+
+    addPetForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const newPetName = document.getElementById('newPetName').value.trim();
+        const newPetBreed = document.getElementById('newPetBreed').value;
+        const newPetType = document.getElementById('newPetType').value.trim();
+        const newPetSex = document.getElementById('newPetSex').value;
+        const newPetAge = document.getElementById('newPetAge').value.trim();
+        const newPetColour = document.getElementById('newPetColour').value.trim();
+        const newPetTemperment = document.getElementById('newPetTemperment').value.trim();
+        const newPetComments = document.getElementById('newPetComments').value.trim();
+        const newPetURL = document.getElementById('newPetURL').value.trim();
+        
+        let errorList = [];
+        
+        if (!newPetName) errorList.push('Pet Name');
+        if (!newPetBreed) errorList.push('Breed');
+        if (!newPetType) errorList.push('Type');
+        if (!newPetSex) errorList.push('Sex');
+        if (!newPetAge) errorList.push('Age');
+        if (!newPetColour) errorList.push('Colour');
+        if (!newPetTemperment) errorList.push('Temperament');
+        if (!newPetComments) errorList.push('Comments');
+        
+        if (errorList.length > 0) {
+            formMessage.style.display = 'block';
+            formMessage.classList.remove('formSuccess');
+            formMessage.classList.add('formError');
+            formMessage.innerHTML = '<strong>Please fill in the following required fields:</strong><br>' + 
+                                   errorList.map(field => '• ' + field).join('<br>');
+            return;
+        }
+        
+        const maxId = Math.max(...data.pets.map(pet => pet.id));
+        const newId = maxId + 1;
+        
+        const imageUrl = newPetURL !== '' ? newPetURL : './imgs/placeholder_BG.png';
+        
+        const newPet = {
+            id: newId,
+            name: newPetName,
+            breed: newPetBreed,
+            subType: newPetType,
+            sex: newPetSex,
+            age: parseInt(newPetAge),
+            colour: newPetColour,
+            temperament: newPetTemperment,
+            comments: newPetComments,
+            adoptionStatus: "available",
+            imageUrl: imageUrl
+        };
+        
+        data.pets.push(newPet);
+        
+        localStorage.setItem('petData', JSON.stringify(data));
+        
+        formMessage.style.display = 'block';
+        formMessage.classList.remove('formError');
+        formMessage.classList.add('formSuccess');
+        formMessage.innerHTML = '<strong>Success!</strong> ' + newPetName + ' has been added to the system.';
+        
+        addPetForm.reset();
+        
+        setTimeout(() => {
+            formMessage.style.display = 'none';
+            formMessage.classList.remove('formSuccess');
+        }, 3000);
+    });
+}
+
+

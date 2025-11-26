@@ -33,12 +33,26 @@
         <div id="loginlogo">
             <img src="imgs/logo.png" alt="" class="responsive">
         </div>
-        <h1 id="adminTitle">Administrator Portal</h1>
-        <div class="btnbox">
-            <button id="newPet" class="siteButtons">Add New Pet</button>
-            <button id="seePets" class="siteButtons">See All Pets</button>
-            <button id="logoutbtn" class="siteButtons">Log Out</button>
-        </div>
+        <h1 id="adminTitle">New Pet Intake Form</h1>
+        <form id="addPetForm" class="siteForm">
+            <div id="formMessage"></div>
+            <h2>Pet Name</h2><input id="newPetName">
+            <h2>Breed</h2><select id="newPetBreed">
+                <option value="">Select Breed:</option>
+            </select>
+            <h2>Type</h2><input id="newPetType">
+            <h2>Sex</h2><select id="newPetSex">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+            </select>
+            <h2>Age</h2><input type="number" id="newPetAge">
+            <h2>Colour</h2><input id="newPetColour">
+            <h2>Temperment</h2><input id="newPetTemperment">
+            <h2>Comments</h2><input id="newPetComments">
+            <h2>Image URL</h2><input id="newPetURL">
+            <div class="btnbox">
+                <button type="submit" id="newPetSubmit" class="siteButtons">Submit</button>
+        </form>
     </div>
 
 </div>
