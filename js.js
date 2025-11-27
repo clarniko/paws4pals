@@ -531,11 +531,96 @@ if(adoptPetForm) {
     formMessage.style.display = 'block';
     formMessage.classList.remove('formError');
     formMessage.classList.add('formSuccess');
-    formMessage.innerHTML = '<span style="font-size:100px;">'+ breedEmoji +'</span><br><strong>Success!</strong> Your adoption application for ' + petName + ' has been submitted!<br>' +
+    formMessage.innerHTML = '<span class="successEmoji">'+ breedEmoji +'</span><br><strong>Success!</strong> Your adoption application for ' + petName + ' has been submitted!<br>' +
         'Your application ID is: <strong>#' + newId + '</strong><br>' +
         'You should hear from our Pet Adoption Specialists within 24 to 240 hours!<br><br>' +
         '<button onclick="window.location.href=\'allpets.html\'" class="siteButtons">Adopt Another!!</button>';
 
     adoptPetForm.reset();
     });
+}
+
+var applicationsList = document.getElementById('applicationsList');
+
+if(applicationsList) {
+    displayPendingApplications();
+}
+
+function displayPendingApplications() {
+    applicationsList.innerHTML = '';
+    
+    // Filter for pending adoptions
+    const pendingAdoptions = data.adoptions.filter(adoption => {
+        const pet = data.pets.find(p => p.id === adoption.petID);
+        return pet && pet.adoptionStatus === 'pending';
+    });
+    
+    if (pendingAdoptions.length === 0) {
+        applicationsList.innerHTML = '<p>No pending applications at this time.</p>';
+        return;
+    }
+    
+    pendingAdoptions.forEach(adoption => {
+        const pet = data.pets.find(p => p.id === adoption.petID);
+        
+        const applicationCard = document.createElement('div');
+        applicationCard.className = 'applicationCard';
+        
+        applicationCard.innerHTML =
+            '<hr>' + 
+            '<h3>Application #' + adoption.id + ' - ' + pet.name + '</h3>' +
+            '<div class="applicationGrid">' +
+                '<p><strong>Applicant:</strong> ' + adoption.name + '</p>' +
+                '<p><strong>Email:</strong> ' + adoption.email + '</p>' +
+                '<p><strong>Pet:</strong> ' + pet.name + ' (' + pet.breed + ')</p>' +
+                '<p><strong>Previous Pet Owner:</strong> ' + adoption.history + '</p>' +
+            '</div>' +
+            '<p><strong>Reason for Adoption:</strong> ' + (adoption.comments || 'N/A') + '</p>' +
+            '<div class="applicationActions">' +
+                '<button onclick="approveAdoption(' + adoption.id + ', ' + adoption.petID + ')" class="siteButtons approveBtn">Approve Application</button>' +
+                '<button onclick="rejectAdoption(' + adoption.id + ', ' + adoption.petID + ')" class="siteButtons rejectBtn">Reject Application</button>' +
+            '</div>';
+        
+        applicationsList.appendChild(applicationCard);
+    });
+}
+
+function approveAdoption(adoptionId, petId) {
+    // Update pet status to adopted
+    const petIndex = data.pets.findIndex(pet => pet.id === petId);
+    if (petIndex !== -1) {
+        data.pets[petIndex].adoptionStatus = 'adopted';
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('petData', JSON.stringify(data));
+    
+    // Refresh the display
+    displayPendingApplications();
+    
+    alert('Application approved! Pet status updated to "Adopted".');
+}
+
+function rejectAdoption(adoptionId, petId) {
+    if (confirm('Are you sure you want to reject this application?')) {
+        // Update pet status back to available
+        const petIndex = data.pets.findIndex(pet => pet.id === petId);
+        if (petIndex !== -1) {
+            data.pets[petIndex].adoptionStatus = 'available';
+        }
+        
+        // Remove the adoption record
+        const adoptionIndex = data.adoptions.findIndex(a => a.id === adoptionId);
+        if (adoptionIndex !== -1) {
+            data.adoptions.splice(adoptionIndex, 1);
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('petData', JSON.stringify(data));
+        
+        // Refresh the display
+        displayPendingApplications();
+        
+        alert('Application rejected. Pet is now available again.');
+    }
 }

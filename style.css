@@ -512,3 +512,49 @@ footer {
     border: 1px solid #2e7d32;
     text-align: center;
 }
+
+/* Application Card Styles */
+.applicationCard {
+    margin: 20px;
+}
+
+.applicationCard h3 {
+    margin-top: 0;
+}
+
+.applicationCard .applicationGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 15px;
+}
+
+.applicationCard .applicationActions {
+    margin-top: 15px;
+}
+
+.applicationCard .approveBtn {
+    background: #4CAF50;
+}
+
+.applicationCard .rejectBtn {
+    background: #f44336;
+    margin-left: 10px;
+}
+
+#pendingApplications {
+    margin-top: 30px;
+}
+
+#pendingApplications h2 {
+    text-align: center;
+}
+
+#applicationsList p {
+    text-align: center;
+    color: #666;
+}
+
+.successEmoji {
+    font-size: 100px;
+}
