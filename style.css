@@ -47,6 +47,10 @@ form {
     padding: 0 1%
 }
 
+/* =========================================
+   NAVIGATION
+========================================= */
+
 #topnav {
     background-color: white;
     display: flex;
@@ -96,6 +100,10 @@ form {
     width: 100%;
     height: auto;
 }
+
+/* =========================================
+   LAYOUT
+========================================= */
 
 #page {
     margin-top: 115px;
@@ -167,7 +175,7 @@ form {
     /* border:  #CF322E solid 5px; */
     max-width: 400px;
     max-height: 400px;
-    /* box-shadow: 3px 3px 8px rgba(40, 40, 40, 0.5); */
+    box-shadow: 3px 3px 8px rgba(40, 40, 40, 0.5);
 }
 
 .herotext h1 {
@@ -557,4 +565,53 @@ footer {
 
 .successEmoji {
     font-size: 100px;
+}
+
+
+/* =========================================
+   HERO BANNER — SLIDESHOW
+========================================= */
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    /*
+    text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+    */
+    font-size: 3rem;
+    font-weight: 700;
+    pointer-events: none;
+    text-align: center;
+}
+
+#banner .banner-text h1 {
+    color: white !important;
 }

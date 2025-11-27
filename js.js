@@ -263,12 +263,18 @@ function allPets () {
         showcase.appendChild(showcaseItem);   
         showcaseInfo.appendChild(petDetails);
         showcaseItem.appendChild(showcaseInfo);
-        if(pet.adoptionStatus === "available") {showcaseInfo.appendChild(applicationBtn);}
-        if(pet.adoptionStatus !== "available") {showcaseInfo.appendChild(applicationStatus);}
+        if(pet.adoptionStatus === "available") {petDetails.appendChild(applicationBtn);}
+        if(pet.adoptionStatus !== "available") {petDetails.appendChild(applicationStatus);}
         showcaseTitle.appendChild(nameHeading);
         showcaseItem.appendChild(image);
         showcaseItem.appendChild(showcaseTitle);
         
+
+showcase.appendChild(showcaseItem);   
+showcaseInfo.appendChild(petDetails);
+showcaseItem.appendChild(showcaseInfo);
+if(pet.adoptionStatus === "available") {showcaseInfo.appendChild(applicationBtn);}
+
     });
 
 // Filtering
@@ -624,3 +630,23 @@ function rejectAdoption(adoptionId, petId) {
         alert('Application rejected. Pet is now available again.');
     }
 }
+
+// --- Banner Slideshow (Simple Fade) ---
+let slideIndex = 0;
+
+function showSlides() {
+    const slides = document.querySelectorAll('#banner .slide');
+
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+
+    slides[slideIndex - 1].classList.add('active');
+
+    setTimeout(showSlides, 4000); // 4 seconds per slide
+}
+
+document.addEventListener("DOMContentLoaded", showSlides);
