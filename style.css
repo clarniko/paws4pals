@@ -503,10 +503,12 @@ footer {
     background-color: #ffebee;
     color: #c62828;
     border: 1px solid #c62828
+
 }
 
 .formSuccess {
     background-color: #e8f5e9;
     color: #2e7d32;
-    border: 1px solid #2e7d32
+    border: 1px solid #2e7d32;
+    text-align: center;
 }

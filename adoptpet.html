@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paws4Pals - Home</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="./data.js"></script>
+    <script>
+    const loginState = localStorage.getItem('loginState');
+    const loginType = localStorage.getItem('loginType');
+    if(loginState !== "true" || loginType !== "guest") {window.location.href = 'login.html';}   
+    </script>
+</head>
+<body>
+    <nav id="topnav">
+        <div id="logo">
+            <a href="index.html"><img class="responsive" src="imgs/logo.png"></a>
+        </div>
+            <div id="navmenu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="login.html" class ="active">My Account</a>
+            </div>
+    </nav>
+<div id="page">
+    <div id="loginwindow">
+        <div id="loginlogo">
+            <img src="imgs/logo.png" alt="" class="responsive">
+        </div>
+        <h1 id="adminTitle">Adopt A Pet Form</h1>
+        <form id="adoptPetForm" class="siteForm">
+            <div id="formMessage"></div>
+            <h2>Pet Information</h2><input id="petInformation">
+            
+            <h2>Your Name</h2><input id="adoptName">
+            <h2>Email</h2><input type="email"  id="adoptEmail">
+            <h2>Have you had a pet before?</h2><select id="adoptHistory">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <h2>Why do you want this pet?</h2><input id="adoptPetComment">
+            <h2>Address</h2><input id="adoptPetAddress">
+
+            <h2>Do you agree to our pet adoption policies?</h2><input type="checkbox" id="termsAgree">
+            <div class="btnbox">
+                <button type="submit" id="adoptPetSubmit" class="siteButtons">Submit</button>
+        </form>
+    </div>
+
+</div>
+</body>
+<footer>
+    <script src="./js.js"></script>
+    <p id="copyright">&copy; Paws<span class="secondary">4</span>Pals 2025</p>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const petId = urlParams.get('petId');
+
+        if (petId) {
+            const pet = data.pets.find(p => p.id == petId);
+            
+            if (pet) {
+                const petInformation = document.getElementById('petInformation');
+                if (petInformation) {
+                    petInformation.value = "'" + pet.name + "' the " + pet.colour + " " + pet.subType;
+                    petInformation.readOnly = true;
+                }
+            }
+        }
+    </script>
+</footer>
+</html>

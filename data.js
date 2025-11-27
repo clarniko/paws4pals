@@ -300,5 +300,37 @@ const initialData= {
       "adoptionStatus": "pending",
       "imageUrl": "./imgs/Pets/Stripey_01.jpeg"
     }
-  ]
+  ],
+  "adoptions": [
+  {
+    "id": 1,
+    "name": "Sarah Johnson",
+    "email": "sarah.j@example.com",
+    "history": "Yes",
+    "comments": "I've always loved Siamese cats and Luna seems like the perfect companion. I work from home so I can give her plenty of attention.",
+    "terms": true,
+    "petID": 2,
+    "dateSubmitted": "2025-11-20"
+  },
+  {
+    "id": 2,
+    "name": "Michael Chen",
+    "email": "m.chen@example.com",
+    "history": "Yes",
+    "comments": "We have a large backyard and I'm looking for a smart dog to train. Bella would be a great addition to our family.",
+    "terms": true,
+    "petID": 10,
+    "dateSubmitted": "2025-11-22"
+  },
+  {
+    "id": 3,
+    "name": "Emma Rodriguez",
+    "email": "emma.r@example.com",
+    "history": "No",
+    "comments": "This will be my first exotic pet. I've done extensive research on badger care and have prepared a large outdoor enclosure.",
+    "terms": true,
+    "petID": 20,
+    "dateSubmitted": "2025-11-24"
+  }
+]
 }

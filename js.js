@@ -48,6 +48,7 @@ var clearFilter = document.getElementById('clearFilter');
 
 var addPetForm = document.getElementById('addPetForm');
 var newPetBreed = document.getElementById('newPetBreed');
+var adoptPetForm = document.getElementById('adoptPetForm');
 
 // This selects random pets from the local storage for the index page
 function callRandomPets() {
@@ -249,9 +250,9 @@ function allPets () {
 
     }
 
-        /* applicationBtn.onclick = function() {
-            window.location.href = 'application.html?petId=' + pet.id + '&petName=' + pet.name;
-        }; */
+        applicationBtn.onclick = function() {
+            window.location.href = 'adoptpet.html?petId=' + pet.id + '&petName=' + pet.name;
+        };
 
         const showcaseTitle = document.createElement('div');
         showcaseTitle.className = 'showcaseTitle';
@@ -449,4 +450,92 @@ if(addPetForm) {
     });
 }
 
+if(adoptPetForm) {
 
+    const formMessage = document.getElementById('formMessage');
+
+    adoptPetForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const adoptName = document.getElementById('adoptName').value.trim();
+        const adoptEmail = document.getElementById('adoptEmail').value.trim();
+        const adoptHistory = document.getElementById('adoptHistory').value;
+        const adoptPetComment = document.getElementById('adoptPetComment').value.trim();
+        const adoptPetAddress = document.getElementById('adoptPetAddress').value.trim();
+        const termsAgree = document.getElementById('termsAgree').checked;
+        const petID = urlParams.get('petId');
+        
+        let errorList = [];
+        
+        if (!adoptName) errorList.push('Your Name');
+        if (!adoptEmail) errorList.push('Email');
+        if (!adoptHistory) errorList.push('Pet Ownership History');
+        if (!adoptPetComment) errorList.push('Why you want this pet');
+        if (!adoptPetAddress) errorList.push('Your Address');
+        if (!termsAgree) errorList.push('Terms Agreement');
+        
+        if (errorList.length > 0) {
+            formMessage.style.display = 'block';
+            formMessage.classList.remove('formSuccess');
+            formMessage.classList.add('formError');
+            formMessage.innerHTML = '<strong>Please fill in the following required fields:</strong><br>' + 
+                                   errorList.map(field => '• ' + field).join('<br>');
+            return;
+        }
+        
+        const maxId = Math.max(...data.adoptions.map(adoption => adoption.id));
+        const newId = maxId + 1;
+               
+        const newAdoption = {
+            id: newId,
+            name: adoptName,
+            email: adoptEmail,
+            history: adoptHistory,
+            terms: termsAgree,
+            petID: parseInt(petID)
+        };
+        
+        data.adoptions.push(newAdoption);
+
+        
+        const petIndex = data.pets.findIndex(pet => pet.id == petID);
+        if (petIndex !== -1) {
+            data.pets[petIndex].adoptionStatus = "pending";
+        }
+        
+        const adoptedPet = data.pets.find(pet => pet.id == petID);
+        const petName = adoptedPet ? adoptedPet.name : 'the pet';
+
+        let breedEmoji = '🐾'; // default emoji
+        if (adoptedPet) {
+            switch(adoptedPet.breed) {
+                case 'cat':
+                    breedEmoji = '🐱';
+                    break;
+                case 'dog':
+                    breedEmoji = '🐶';
+                    break;
+                case 'bird':
+                    breedEmoji = '🐦';
+                    break;
+                case 'badger':
+                    breedEmoji = '🦨';
+                    break;
+                default:
+                    breedEmoji = '🐾';
+            }
+        }
+        
+        localStorage.setItem('petData', JSON.stringify(data));
+        
+    formMessage.style.display = 'block';
+    formMessage.classList.remove('formError');
+    formMessage.classList.add('formSuccess');
+    formMessage.innerHTML = '<span style="font-size:100px;">'+ breedEmoji +'</span><br><strong>Success!</strong> Your adoption application for ' + petName + ' has been submitted!<br>' +
+        'Your application ID is: <strong>#' + newId + '</strong><br>' +
+        'You should hear from our Pet Adoption Specialists within 24 to 240 hours!<br><br>' +
+        '<button onclick="window.location.href=\'allpets.html\'" class="siteButtons">Adopt Another!!</button>';
+
+    adoptPetForm.reset();
+    });
+}
